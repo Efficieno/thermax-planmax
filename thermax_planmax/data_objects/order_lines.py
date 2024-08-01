@@ -28,4 +28,4 @@ class OrderLinesBase(ObjectBase):
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
 
-    order_lines_base: Mapped["OrderHeadersBase"] = relationship(back_populates="order_headers_base")
+    # order_lines_base: Mapped["OrderHeadersBase"] = relationship(back_populates="order_headers_base")
