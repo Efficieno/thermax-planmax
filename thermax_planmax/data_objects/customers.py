@@ -6,7 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
 
 if TYPE_CHECKING:
-    from efficieno.demo.thermax_planmax.data_objects.headers import OrderHeaders
+    from thermax_planmax.data_objects.headers import OrderHeaders
 
 
 class Customers(ObjectBase):
