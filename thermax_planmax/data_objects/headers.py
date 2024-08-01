@@ -165,5 +165,5 @@ class OrderHeaders(ObjectBase):
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
 
-    lines: Mapped["OrderLines"] = relationship(back_populates="headers", foreign_keys=[sales_order_header_id, model_line_id])
-    customers: Mapped["Customers"] = relationship(back_populates="headers")
+    # lines: Mapped["OrderLines"] = relationship(back_populates="headers", foreign_keys=[sales_order_header_id, model_line_id])
+    # customers: Mapped["Customers"] = relationship(back_populates="headers")
