@@ -33,7 +33,7 @@ class PRNDetails(ObjectBase):
     last_update_login: Mapped[str] = mapped_column(
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
-    so_header_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    so_header_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata()})
     sales_order_number: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
