@@ -14,7 +14,7 @@ class OrderHeaderDetails(View):
     #              filter(TechOCLSpecs.otos_section == 'MAIN').
     #              filter(TechOCLSpecs.otm_header_id == ocl_h.otm_header_id))
 
-    model_subq = Select(ModelXref.model_number).filter(ModelXref.model_item == OrderHeaders.sos_item).subquery()
+    # model_subq = Select(ModelXref.model_number).filter(ModelXref.model_item == OrderHeaders.sos_item).subquery()
 
     query = (
         Select(
@@ -26,7 +26,7 @@ class OrderHeaderDetails(View):
             OrderHeaders.sub_group,
             OrderHeaders.product_category,
             OrderHeadersBase.attribute6,
-            model_subq,
+            # model_subq,
             # pressure,
             OrderHeaders.mfg_organization_id,
             OrderHeadersBase.transactional_curr_code,
