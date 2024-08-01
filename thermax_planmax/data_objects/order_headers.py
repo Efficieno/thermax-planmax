@@ -24,4 +24,4 @@ class OrderHeadersBase(ObjectBase):
     )
     fob_point_code: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
-    order_headers_base: Mapped["OrderLinesBase"] = relationship(back_populates="order_lines_base")
+    # order_headers_base: Mapped["OrderLinesBase"] = relationship(back_populates="order_lines_base")
