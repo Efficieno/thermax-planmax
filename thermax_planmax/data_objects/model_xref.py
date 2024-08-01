@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 class ModelXref(ObjectBase):
     __data_object_type__ = "data_object"
     __tablename__ = "XXPLANMAX_MODEL_XREF"
-    __table_args__ = {"schema": "apps", "extend_existing": True}
+    __table_args__ = {"schema": "apps"}
 
     model_item: Mapped[str] = mapped_column(String, primary_key=True, info={"column_metadata": ColumnMetadata()})
     model_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
