@@ -30,14 +30,14 @@ class OrderHeaderDetails(View):
             # pressure,
             OrderHeaders.mfg_organization_id,
             OrderHeadersBase.transactional_curr_code,
-            (
-                func.coalesce(OrderLinesBase.unit_selling_price, 0)
-                * (
-                    func.coalesce(OrderLinesBase.ordered_quantity, 0)
-                    + func.coalesce(OrderLinesBase.cancelled_quantity, 0)
-                )
-            )
-            / 100000,
+            # (
+                # func.coalesce(OrderLinesBase.unit_selling_price, 0)
+                # * (
+                    # func.coalesce(OrderLinesBase.ordered_quantity, 0)
+                    # + func.coalesce(OrderLinesBase.cancelled_quantity, 0)
+                # )
+            # )
+            # / 100000,
             OrderHeaders.curr_cust_required_date,
             # fuel,
             # special_instructions,
