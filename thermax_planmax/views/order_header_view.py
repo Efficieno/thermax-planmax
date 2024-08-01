@@ -4,7 +4,7 @@ from efficieno.components.view_tables import ViewTable
 from efficieno.components.views import View
 from efficieno.demo.thermax_planmax.data_objects.customers import Customers
 from efficieno.demo.thermax_planmax.data_objects.headers import OrderHeaders
-from efficieno.demo.thermax_planmax.data_objects.model_xref import ModelXref
+# from efficieno.demo.thermax_planmax.data_objects.model_xref import ModelXref
 from efficieno.demo.thermax_planmax.data_objects.order_headers import OrderHeadersBase
 from efficieno.demo.thermax_planmax.data_objects.order_lines import OrderLinesBase
 
