@@ -40,4 +40,4 @@ class Customers(ObjectBase):
     province: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     country: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
-    headers: Mapped["OrderHeaders"] = relationship(back_populates="customers")
+    # headers: Mapped["OrderHeaders"] = relationship(back_populates="customers")
