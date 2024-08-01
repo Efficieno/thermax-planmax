@@ -103,4 +103,4 @@ class OrderLines(ObjectBase):
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
 
-    headers: Mapped["OrderHeaders"] = relationship(back_populates="lines")
+    headers: Mapped["OrderHeaders"] = relationship(back_populates="lines", foreign_keys=[sales_order_header_id, reference_line_id])
