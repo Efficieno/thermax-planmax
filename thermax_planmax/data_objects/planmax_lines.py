@@ -7,27 +7,27 @@ from efficieno.ontology.base import ColumnMetadata, ObjectBase
 
 
 
+if TYPE_CHECKING:
+    pass
+
+
 class PlanMaxLines(ObjectBase):
     __data_object_type__ = "data_object"
     __tablename__ = "XXPLANMAX_LINE_DTLS"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
     sales_order_header_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.oe_order_headers_all.header_id"),
-        primary_key=False,
-        info={"column_metadata": ColumnMetadata()},
+        Integer, primary_key=True, info={"column_metadata": ColumnMetadata()}
     )
     sales_order_header: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     sales_order_line_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.oe_order_lines_all.line_id"), primary_key=True, info={"column_metadata": ColumnMetadata()}
+        Integer, primary_key=True, info={"column_metadata": ColumnMetadata()}
     )
     sales_order_line: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     reference_line_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.oe_order_lines_all.line_id"),
-        primary_key=False,
-        info={"column_metadata": ColumnMetadata()},
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     reference_line: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     project_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
@@ -100,5 +100,7 @@ class PlanMaxLines(ObjectBase):
     line_item_sub_type: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
+    project_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
-    # headers: Mapped["OrderHeaders"] = relationship(back_populates="lines")
+    # planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="planmax_lines",
+    #                                                          primaryjoin="and_(PlanMaxHeaders.sales_order_header_id == PlanMaxLines.sales_order_header_id,PlanMaxHeaders.model_line_id == PlanMaxLines.reference_line_id)")

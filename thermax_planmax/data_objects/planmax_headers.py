@@ -6,9 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
 
 if TYPE_CHECKING:
-    from thermax_planmax.data_objects.order_headers import OrderHeaders
-    from thermax_planmax.data_objects.order_lines import OrderLines
-
+    from thermax_planmax.data_objects.customers import Customers
 
 
 class PlanMaxHeaders(ObjectBase):
@@ -20,14 +18,12 @@ class PlanMaxHeaders(ObjectBase):
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     sales_order_header_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.oe_order_headers_all.header_id"), primary_key=True, info={"column_metadata": ColumnMetadata()}
+        Integer, primary_key=True, info={"column_metadata": ColumnMetadata()}
     )
     sales_order_number: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
-    model_line_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.oe_order_lines_all.line_id"), primary_key=True, info={"column_metadata": ColumnMetadata()}
-    )
+    model_line_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata()})
     model_line_number: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
@@ -111,9 +107,7 @@ class PlanMaxHeaders(ObjectBase):
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     ship_site_use_id: Mapped[str] = mapped_column(
-        ForeignKey("apps.xxplanmax_cust_dtls.site_use_id"),
-        primary_key=False,
-        info={"column_metadata": ColumnMetadata()},
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     ship_cust_acct_site_id: Mapped[str] = mapped_column(
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
@@ -165,13 +159,91 @@ class PlanMaxHeaders(ObjectBase):
     project_task_description: Mapped[str] = mapped_column(
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
-
-    order_headers: Mapped["OrderHeaders"] = relationship(back_populates="planmax_headers")
-    order_lines: Mapped["OrderLines"] = relationship(
-        back_populates="planmax_headers", primaryjoin="PlanMaxHeaders.model_line_id == OrderLines.line_id"
+    operating_unit_name: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
+    region_of_order: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    type_of_order: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    hdr_order_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    hdr_booked_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    otm_tech_ocl_no: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    fuel: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    pressure: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    special_instructions: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    product_model: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    ordered_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    order_currency: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    total_unit_value: Mapped[str] = mapped_column(
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    conversion_rate: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    total_unit_value_in_inr: Mapped[str] = mapped_column(
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    prn_customer_dely_date: Mapped[str] = mapped_column(
+        Date, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    prn_revised_dely_reqd_date: Mapped[str] = mapped_column(
+        Date, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    prn_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    prn_approved_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    freight_pay: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    inco_terms: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    abp_percent: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    pgb_percent: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    bonus: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    ld_applicable: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    penalty: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    insurance_by: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    sales_engineer: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    otm_header_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    project_task_name: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    proj_specific_llbom: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    llbom_release_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    llbom_pr: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    di_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    di_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    di_value: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    di_freight: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    di_recommended_transporter: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    di_transportation_scope: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    last_invoice_no: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    last_invoice_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    invoiced_value: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    contractual_plan_otp: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    delivery_otp: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    original_project_no: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    rated_standard_man_hrs: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    mfg_commitment_date: Mapped[str] = mapped_column(
+        Date, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    plan_eol_mech_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    plan_eol_ei_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    folder_status: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    regional_commercial: Mapped[str] = mapped_column(
+        String, primary_key=False, info={"column_metadata": ColumnMetadata()}
+    )
+    actual_fg_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    shop_subcontract: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
-    # planmax_lines = relationship('PlanMaxLines', foreign_keys=[sales_order_header_id, model_line_id],
-    #                              primaryjoin=and_(sales_order_header_id == PlanMaxLines.sales_order_header_id, model_line_id == PlanMaxLines.reference_line_id))
-    # lines: Mapped["OrderLines"] = relationship(back_populates="headers")
-    # customers: Mapped["Customers"] = relationship(back_populates="headers")
+    customers: Mapped["Customers"] = relationship(
+        back_populates="planmax_headers",
+        primaryjoin="foreign(PlanMaxHeaders.ship_site_use_id)==Customers.site_use_id",
+    )

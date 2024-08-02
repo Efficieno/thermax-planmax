@@ -31,5 +31,3 @@ class OrderLines(ObjectBase):
 
     order_headers: Mapped["OrderHeaders"] = relationship(back_populates="order_lines")
     planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="order_lines")
-
-    # order_lines_base: Mapped["OrderHeadersBase"] = relationship(back_populates="order_headers_base")
