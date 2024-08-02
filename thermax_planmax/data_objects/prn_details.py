@@ -47,7 +47,7 @@ class PRNDetails(ObjectBase):
     ch_product_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     group_route: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     customer_dely_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    prn_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    prn_number: Mapped[str] = mapped_column(String, primary_key=True, info={"column_metadata": ColumnMetadata()})
     revised_dely_reqd_date: Mapped[str] = mapped_column(
         Date, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
