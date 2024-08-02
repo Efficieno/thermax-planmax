@@ -4,7 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
 
 
-class InvoiceHeaders(ObjectBase):
+class PODetails(ObjectBase):
     __data_object_type__ = "data_object"
     __tablename__ = "xxplanmax_po_proj_dtls"
     __table_args__ = {"schema": "apps", "extend_existing": True}
@@ -26,12 +26,12 @@ class InvoiceHeaders(ObjectBase):
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     po_header_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    po_line_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata()})
+    po_line_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
     line_location_id: Mapped[str] = mapped_column(
-        Integer, primary_key=True, info={"column_metadata": ColumnMetadata()}
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     po_distribution_id: Mapped[str] = mapped_column(
-        Integer, primary_key=True, info={"column_metadata": ColumnMetadata()}
+        Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
     requisition_header_id: Mapped[str] = mapped_column(
         Integer, primary_key=False, info={"column_metadata": ColumnMetadata()}

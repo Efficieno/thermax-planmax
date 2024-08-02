@@ -2,53 +2,60 @@ from sqlalchemy import Select, func
 
 from efficieno.components.view_tables import ViewTable
 from efficieno.components.views import View
-from thermax_planmax.data_objects.customers import Customers
-from thermax_planmax.data_objects.headers import OrderHeaders
-# from efficieno.demo.thermax_planmax.data_objects.model_xref import ModelXref
-from thermax_planmax.data_objects.order_headers import OrderHeadersBase
-from thermax_planmax.data_objects.order_lines import OrderLinesBase
+from efficieno.components.view_actions import Action
+
+from thermax_planmax.data_objects.headers import PlanMaxHeaders
+from thermax_planmax.data_objects.order_headers import OrderHeaders
+from thermax_planmax.data_objects.order_lines import OrderLines
 
 
 class OrderHeaderDetails(View):
-    # fuel_subq = (Select(TechOCLSpecs.otos_value_1).
-    #              filter(TechOCLSpecs.otos_section == 'MAIN').
-    #              filter(TechOCLSpecs.otm_header_id == ocl_h.otm_header_id))
-
-    # model_subq = Select(ModelXref.model_number).filter(ModelXref.model_item == OrderHeaders.sos_item).subquery()
-
     query = (
         Select(
-            OrderHeaders.curr_thx_commitment_date,
-            OrderHeaders.project_number,
-            OrderHeaders.sales_order_number,
-            Customers.party_name,
-            OrderHeaders.group_name,
-            OrderHeaders.sub_group,
-            OrderHeaders.product_category,
-            OrderHeadersBase.attribute6,
-            # model_subq,
-            # pressure,
-            OrderHeaders.mfg_organization_id,
-            OrderHeadersBase.transactional_curr_code,
-            # (
-                # func.coalesce(OrderLinesBase.unit_selling_price, 0)
-                # * (
-                    # func.coalesce(OrderLinesBase.ordered_quantity, 0)
-                    # + func.coalesce(OrderLinesBase.cancelled_quantity, 0)
-                # )
-            # )
-            # / 100000,
-            OrderHeaders.curr_cust_required_date,
+            PlanMaxHeaders.curr_thx_commitment_date,
+            PlanMaxHeaders.project_number,
+            PlanMaxHeaders.sales_order_number,
+            # Customers.party_name,
+            PlanMaxHeaders.group_name,
+            PlanMaxHeaders.sub_group,
+            PlanMaxHeaders.product_category,
+            OrderHeaders.attribute6,
+            # model,
+            # pressure
+            PlanMaxHeaders.mfg_organization_id,
+            OrderHeaders.transactional_curr_code,
+            OrderLines.unit_selling_price,
+            OrderLines.ordered_quantity,
+            OrderLines.cancelled_quantity,
+            PlanMaxHeaders.curr_cust_required_date,
             # fuel,
-            # special_instructions,
-            OrderHeadersBase.freight_terms_code,
-            OrderHeadersBase.fob_point_code,
+            # special instructions
+            OrderHeaders.freight_terms_code,
+            OrderHeaders.fob_point_code,
             # prn_received_dt,
             # di_receipt_date
         )
-        .join(Customers)
-        .join(OrderHeadersBase)
-        .join(OrderLinesBase)
+        .join(OrderHeaders.planmax_headers)
+        .join(OrderLines.planmax_headers)
+    )
+
+    @staticmethod
+    def fn_update_order_intake_fields(
+        header_id: int,
+        cust_po_number: str,
+        booked_date: str = None,
+        request_date: str = None,
+    ):
+        print("************** Executing Action ****************")
+        print(f"Header ID          - {header_id}")
+        print(f"Customer PO Number           - {cust_po_number}")
+        print(f"Booked Date             - {booked_date}")
+        print(f"Request Date             - {request_date}")
+        print("************************************************")
+        return {"status": "success", "message": "Action Executed Successfully"}, 200
+
+    update_order_intake_fields = Action(
+        display_name="Demo action", action_type="update", action_function=fn_update_order_intake_fields
     )
 
     master_plan_view = ViewTable(
@@ -57,6 +64,6 @@ class OrderHeaderDetails(View):
         table_description="All Orders view",
         query=query,
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )

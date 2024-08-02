@@ -6,11 +6,12 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
 
 if TYPE_CHECKING:
-    from thermax_planmax.data_objects.customers import Customers
-    from thermax_planmax.data_objects.lines import OrderLines
+    from thermax_planmax.data_objects.order_headers import OrderHeaders
+    from thermax_planmax.data_objects.order_lines import OrderLines
 
 
-class OrderHeaders(ObjectBase):
+
+class PlanMaxHeaders(ObjectBase):
     __data_object_type__ = "data_object"
     __tablename__ = "XXPLANMAX_HEADER_DTLS"
     __table_args__ = {"schema": "apps", "extend_existing": True}
@@ -165,5 +166,12 @@ class OrderHeaders(ObjectBase):
         String, primary_key=False, info={"column_metadata": ColumnMetadata()}
     )
 
-    # lines: Mapped["OrderLines"] = relationship(back_populates="headers", foreign_keys=[sales_order_header_id, model_line_id])
+    order_headers: Mapped["OrderHeaders"] = relationship(back_populates="planmax_headers")
+    order_lines: Mapped["OrderLines"] = relationship(
+        back_populates="planmax_headers", primaryjoin="PlanMaxHeaders.model_line_id == OrderLines.line_id"
+    )
+
+    # planmax_lines = relationship('PlanMaxLines', foreign_keys=[sales_order_header_id, model_line_id],
+    #                              primaryjoin=and_(sales_order_header_id == PlanMaxLines.sales_order_header_id, model_line_id == PlanMaxLines.reference_line_id))
+    # lines: Mapped["OrderLines"] = relationship(back_populates="headers")
     # customers: Mapped["Customers"] = relationship(back_populates="headers")
