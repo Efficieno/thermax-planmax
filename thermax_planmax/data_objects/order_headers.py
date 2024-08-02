@@ -25,5 +25,5 @@ class OrderHeaders(ObjectBase):
     )
     fob_point_code: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
-    order_lines: Mapped["OrderLines"] = relationship(back_populates="order_headers")
-    planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="order_headers")
+    # order_lines: Mapped["OrderLines"] = relationship(back_populates="order_headers")
+    # planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="order_headers")
