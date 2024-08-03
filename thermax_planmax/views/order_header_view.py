@@ -13,6 +13,9 @@ class OrderHeaderDetails(View):
         PlanMaxHeaders.curr_thx_commitment_date,
         PlanMaxHeaders.project_number,
         PlanMaxHeaders.sales_order_number,
+        PlanMaxHeaders.sales_order_header_id,
+        PlanMaxHeaders.model_line_number,
+        PlanMaxHeaders.model_line_id,
         Customers.party_name,
         PlanMaxHeaders.group_name,
         PlanMaxHeaders.sub_group,
@@ -32,6 +35,25 @@ class OrderHeaderDetails(View):
         PlanMaxHeaders.di_date,
     ).join(PlanMaxHeaders.customers)
 
+
+    @staticmethod
+    def fn_update_order_intake_fields(
+        sales_order_header_id: int,
+        model_line_id: str,
+    ):
+        print("************** Executing Action ****************")
+        print(f"Header ID          - {header_id}")
+        print(f"Customer PO Number           - {cust_po_number}")
+        # print(f"Booked Date             - {booked_date}")
+        # print(f"Request Date             - {request_date}")
+        print("************************************************")
+        return {"status": "success", "message": "Action Executed Successfully"}, 200
+
+    update_order_intake_fields = Action(
+        display_name="Demo action", action_type="update", action_function=fn_update_order_intake_fields
+    )
+
+
     rolling_plan_view = ViewTable(
         display_name="Rolling Plan",
         table_header="Rolling Plan",
@@ -40,6 +62,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -59,8 +84,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.order_status == "OPEN"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_rolling_plan = Metric(
@@ -78,6 +103,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -97,8 +125,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.order_status == "OPEN"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_master_plan = Metric(
@@ -116,6 +144,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -135,8 +166,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_all_orders = Metric(
@@ -154,6 +185,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -173,8 +207,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.group_name == "HO"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_ho_orders = Metric(
@@ -192,6 +226,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -211,8 +248,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.order_intake_status == "N"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_new_orders = Metric(
@@ -231,6 +268,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
             Customers.party_name,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
             PlanMaxHeaders.product_category,
@@ -249,8 +289,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.bom_common_status == "N"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_pending_bill_comm = Metric(
@@ -268,6 +308,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -287,8 +330,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.reflection_config_status == "N"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_pending_config_reflection = Metric(
@@ -306,6 +349,9 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
+            PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -325,8 +371,8 @@ class OrderHeaderDetails(View):
             PlanMaxHeaders.di_date,
         ).filter(PlanMaxHeaders.mat_planning_status == "N"),
         column_properties={},
-        actions=[],
-        inline_actions=None,
+        actions=[update_order_intake_fields],
+        inline_actions=update_order_intake_fields,
     )
 
     count_pending_drp = Metric(
@@ -334,23 +380,4 @@ class OrderHeaderDetails(View):
         metric_description="Orders for which planning is pending",
         query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
         base_object=pending_drp_view,
-    )
-
-    @staticmethod
-    def fn_update_order_intake_fields(
-        header_id: int,
-        cust_po_number: str,
-        booked_date: str = None,
-        request_date: str = None,
-    ):
-        print("************** Executing Action ****************")
-        print(f"Header ID          - {header_id}")
-        print(f"Customer PO Number           - {cust_po_number}")
-        print(f"Booked Date             - {booked_date}")
-        print(f"Request Date             - {request_date}")
-        print("************************************************")
-        return {"status": "success", "message": "Action Executed Successfully"}, 200
-
-    update_order_intake_fields = Action(
-        display_name="Demo action", action_type="update", action_function=fn_update_order_intake_fields
     )
