@@ -21,7 +21,7 @@ from thermax_planmax.data_objects.tech_ocl_master import TechOCLMaster  # noqa: 
 from thermax_planmax.data_objects.tech_ocl_lines import TechOCLLines  # noqa: F401
 
 
-class TechOCLDetails(View):
+class TechOCLLinesView(View):
     query = Select(
         PlanMaxHeaders,
         Customers,
@@ -30,7 +30,7 @@ class TechOCLDetails(View):
         TechOCLLines,
     ).outerjoin(PlanMaxHeaders.tech_ocl_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
-    tech_ocl_details_view = ViewTable(
+    all_cols_tech_ocl_lines_v = ViewTable(
         display_name="Tech OCL Details",
         table_header="Tech OCL Details",
         table_description="Tech OCL Details",

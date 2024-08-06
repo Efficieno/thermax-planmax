@@ -20,7 +20,7 @@ from thermax_planmax.data_objects.prn_details import PRNDetails  # noqa: F401
 from thermax_planmax.data_objects.tech_ocl_master import TechOCLMaster  # noqa: F401
 from thermax_planmax.data_objects.tech_ocl_lines import TechOCLLines  # noqa: F401
 
-class MasterPlan(View):
+class MasterPlanHeaders(View):
     query = Select(
         PlanMaxHeaders,
         Customers,
@@ -28,10 +28,10 @@ class MasterPlan(View):
         Organizations
     ).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
-    master_plan_details_view = ViewTable(
+    all_cols_master_plan_headers_v = ViewTable(
         display_name="Master Plan",
-        table_header="Master Plan",
-        table_description="Master Plan",
+        table_header="Master Plan (All Columns)",
+        table_description="Master Plan (All Columns)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
@@ -175,9 +175,9 @@ class MasterPlan(View):
         inline_actions=None,
     )
 
-    count_master_plan = Metric(
+    count_master_plan_headers = Metric(
         display_name="Master Plan",
         metric_description="Total Open Orders",
         query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
-        base_object=master_plan_details_view,
+        base_object=all_cols_master_plan_headers_v,
     )

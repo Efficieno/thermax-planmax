@@ -30,7 +30,7 @@ class DIDetailsView(View):
         DIDetails
     ).outerjoin(PlanMaxHeaders.di_details).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
-    di_details_view = ViewTable(
+    all_cols_di_details_v = ViewTable(
         display_name="DI Details",
         table_header="DI Details",
         table_description="DI Details",

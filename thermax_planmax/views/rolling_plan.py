@@ -29,10 +29,10 @@ class RollingPlan(View):
         Organizations
     ).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
-    rolling_plan_view = ViewTable(
+    all_cols_rolling_plan_view = ViewTable(
         display_name="Rolling Plan",
-        table_header="Rolling Plan",
-        table_description="Rolling plan details",
+        table_header="Rolling Plan (All Cols)",
+        table_description="Rolling plan details (All Cols)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
@@ -92,7 +92,7 @@ class RollingPlan(View):
         },
         group_by_conditions=[PlanMaxHeaders.group_name],
         selection=[PlanMaxHeaders.group_name, func.count(PlanMaxHeaders.sales_order_number).label("count")],
-        base_object=rolling_plan_view,
+        base_object=all_cols_rolling_plan_view,
         drill_down_elements=[PlanMaxHeaders.region_of_order, Customers.city, Customers.party_name],
     )
 
@@ -100,7 +100,7 @@ class RollingPlan(View):
         display_name="Rolling Plan",
         metric_description="Total Open Orders in Rolling Plan",
         query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
-        base_object=rolling_plan_view,
+        base_object=all_cols_rolling_plan_view,
     )
 
     ho_orders_view = ViewTable(
