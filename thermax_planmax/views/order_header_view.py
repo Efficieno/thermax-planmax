@@ -1,4 +1,4 @@
-from sqlalchemy import Select, func
+from sqlalchemy import Select, func, Update, and_
 
 from efficieno.components.view_actions import Action
 from efficieno.components.view_metrics import Metric
@@ -327,6 +327,19 @@ class OrderHeaderDetails(View):
         print(f"Org ID              - {mfg_organization_id}")
         print(f"Std Non Std             - {std_nstd}")
         print(f"SOS Item             - {sos_item}")
+
+        args = {}
+        if mfg_organization_id is not None:
+            args["mfg_organization_id"] = mfg_organization_id
+        elif std_nstd is not None:
+            args["std_nstd"] = std_nstd
+        elif sos_item is not None:
+            args["sos_item"] = sos_item
+
+        update_sql = (Update(PlanMaxHeaders)
+                      .where(and_(PlanMaxHeaders.sales_order_header_id == sales_order_header_id, PlanMaxHeaders.model_line_id == model_line_id))
+                      .values(**args))
+        print(f"Update statement        - {update_sql}")
         print("************************************************")
         return {"status": "success", "message": "Action Executed Successfully"}, 200
 
