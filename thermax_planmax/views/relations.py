@@ -1,11 +1,12 @@
 from efficieno.components.relations import Relations
 
 # Data Views
-from thermax_planmax.views.rolling_plan import RollingPlan
-from thermax_planmax.views.master_plan_details import MasterPlanLines
-from thermax_planmax.views.di_details import DIDetailsView
-from thermax_planmax.views.tech_ocl_lines import TechOCLLinesView
-from thermax_planmax.views.master_plan_headers import MasterPlanHeaders
+from thermax_planmax.views.rolling_plan_view import RollingPlan
+from thermax_planmax.views.master_plan_details_view import MasterPlanLines
+from thermax_planmax.views.di_details_view import DIDetailsView
+from thermax_planmax.views.tech_ocl_lines_view import TechOCLLinesView
+from thermax_planmax.views.master_plan_headers_view import MasterPlanHeaders
+from thermax_planmax.views.prn_details_view import PRNDetailsView
 
 # Data Objects
 from thermax_planmax.data_objects.planmax_headers import PlanMaxHeaders
@@ -40,6 +41,14 @@ Relations.add_relations(
     join_conditions=[(PlanMaxHeaders.otm_header_id, TechOCLLines.otm_header_id)]
     )
 
+Relations.add_relations(
+    relation_name="rolling_master_prn",
+    source=RollingPlan.all_cols_rolling_plan_view,
+    destination=PRNDetailsView.all_cols_prn_details_v,
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetailsView.so_header_id),
+                     (PlanMaxHeaders.project_number, PRNDetailsView.project_number_so)]
+    )
+
 
 # Master plan Drill Down 
 
@@ -65,4 +74,12 @@ Relations.add_relations(
     source=MasterPlanHeaders.all_cols_master_plan_headers_v,
     destination=TechOCLLinesView.all_cols_tech_ocl_lines_v,
     join_conditions=[(PlanMaxHeaders.otm_header_id, TechOCLLines.otm_header_id)]
+    )
+
+Relations.add_relations(
+    relation_name="rolling_master_prn_detls",
+    source=MasterPlanHeaders.all_cols_master_plan_headers_v,
+    destination=PRNDetailsView.all_cols_prn_details_v,
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetailsView.so_header_id),
+                     (PlanMaxHeaders.project_number, PRNDetailsView.project_number_so)]
     )
