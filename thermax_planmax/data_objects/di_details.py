@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Date, Integer, String
+from sqlalchemy import Date, Integer, String, Float
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
@@ -113,9 +113,9 @@ class DIDetails(ObjectBase):
     any_special_instruction: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     send_email: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     cgst: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    cgst_percentage: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    cgst_percentage: Mapped[str] = mapped_column(Float, primary_key=False, info={"column_metadata": ColumnMetadata()})
     sgst: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    sgst_percentage: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    sgst_percentage: Mapped[str] = mapped_column(Float, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
     planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="di_details",
                                                              primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no,"
