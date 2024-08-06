@@ -31,9 +31,9 @@ class DIDetailsView(View):
     ).outerjoin(DIDetails).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     di_details_view = ViewTable(
-        display_name="Rolling Plan",
-        table_header="Rolling Plan",
-        table_description="Rolling plan details",
+        display_name="DI Details",
+        table_header="DI Details",
+        table_description="DI Details",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

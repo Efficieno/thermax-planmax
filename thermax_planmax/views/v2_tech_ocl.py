@@ -31,9 +31,9 @@ class TechOCLDetails(View):
     ).outerjoin(TechOCLLines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     tech_ocl_details_view = ViewTable(
-        display_name="Rolling Plan",
-        table_header="Rolling Plan",
-        table_description="Rolling plan details",
+        display_name="Tech OCL Details",
+        table_header="Tech OCL Details",
+        table_description="Tech OCL Details",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

@@ -37,7 +37,9 @@ class RollingPlan(View):
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
             PlanMaxHeaders.sales_order_number,
+            PlanMaxHeaders.sales_order_header_id,
             PlanMaxHeaders.model_line_number,
+            PlanMaxHeaders.model_line_id,
             Customers.party_name,
             PlanMaxHeaders.group_name,
             PlanMaxHeaders.sub_group,
@@ -55,6 +57,7 @@ class RollingPlan(View):
             PlanMaxHeaders.inco_terms,
             PlanMaxHeaders.prn_approved_date,
             PlanMaxHeaders.di_date,
+            PlanMaxHeaders.otm_header_id
         ).filter(PlanMaxHeaders.order_status == "OPEN"),
         column_properties={},
         actions=[],
