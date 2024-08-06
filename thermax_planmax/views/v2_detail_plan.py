@@ -139,3 +139,10 @@ class DetailPlan(View):
         actions=[],
         inline_actions=None,
     )
+
+    count_all_orders = Metric(
+        display_name="All Sales Orders Lines",
+        metric_description="Total Open Order Lines",
+        query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
+        base_object=all_sales_order_lines_view,
+    )

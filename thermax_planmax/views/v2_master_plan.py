@@ -174,3 +174,10 @@ class MasterPlan(View):
         actions=[],
         inline_actions=None,
     )
+
+    count_master_plan = Metric(
+        display_name="Master Plan",
+        metric_description="Total Open Orders",
+        query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
+        base_object=master_plan_view,
+    )
