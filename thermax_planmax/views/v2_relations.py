@@ -13,6 +13,8 @@ from thermax_planmax.data_objects.di_details import DIDetails
 from thermax_planmax.data_objects.tech_ocl_lines import TechOCLLines
 
 
+# Rolling plan Relations 
+
 Relations.add_relations(
     relation_name="rolling_master_details",
     source=RollingPlan.rolling_plan_view,
