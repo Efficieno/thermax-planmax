@@ -56,7 +56,7 @@ class DIDetails(ObjectBase):
     freight: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     consignment_delivery_instructn: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     shipping_method: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    mode: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    # mode: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     road_permit_status: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     payment_details1: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     amt1: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
