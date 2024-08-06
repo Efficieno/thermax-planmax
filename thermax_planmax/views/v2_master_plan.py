@@ -179,5 +179,5 @@ class MasterPlan(View):
         display_name="Master Plan",
         metric_description="Total Open Orders",
         query=func.count(PlanMaxHeaders.sales_order_number).label("Orders Count"),
-        base_object=master_plan_view,
+        base_object=master_plan_details_view,
     )
