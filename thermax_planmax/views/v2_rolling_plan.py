@@ -144,6 +144,40 @@ class RollingPlan(View):
         base_object=ho_orders_view,
     )
 
+    @staticmethod
+    def fn_update_order_intake_fields(
+            sales_order_header_id: int,
+            model_line_id: str,
+            mfg_organization_id: str = None,
+            std_nstd: str = None,
+            sos_item: str = None
+    ):
+        print("************** Executing Action ****************")
+        print(f"Order Header ID          - {sales_order_header_id}")
+        print(f"Model Line ID            - {model_line_id}")
+        print(f"Org ID              - {mfg_organization_id}")
+        print(f"Std Non Std             - {std_nstd}")
+        print(f"SOS Item             - {sos_item}")
+
+        args = {}
+        if mfg_organization_id is not None:
+            args["mfg_organization_id"] = mfg_organization_id
+        elif std_nstd is not None:
+            args["std_nstd"] = std_nstd
+        elif sos_item is not None:
+            args["sos_item"] = sos_item
+
+        update_sql = (Update(PlanMaxHeaders)
+                      .where(and_(PlanMaxHeaders.sales_order_header_id == sales_order_header_id, PlanMaxHeaders.model_line_id == model_line_id))
+                      .values(**args))
+        print(f"Update statement        - {update_sql}")
+        print("************************************************")
+        return {"status": "success", "message": "Action Executed Successfully"}, 200
+
+    update_order_intake_fields = Action(
+        display_name="Update Order InTake", action_type="update", action_function=fn_update_order_intake_fields
+    )
+
     new_orders_view = ViewTable(
         display_name="New Orders",
         table_header="New Orders",
