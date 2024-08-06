@@ -28,7 +28,7 @@ class DIDetailsView(View):
         Calender,
         Organizations,
         DIDetails
-    ).outerjoin(DIDetails).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
+    ).outerjoin(PlanMaxHeaders.di_details).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     di_details_view = ViewTable(
         display_name="DI Details",

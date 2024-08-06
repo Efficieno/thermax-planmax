@@ -28,7 +28,7 @@ class TechOCLDetails(View):
         Calender,
         Organizations,
         TechOCLLines,
-    ).outerjoin(TechOCLLines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
+    ).outerjoin(PlanMaxHeaders.tech_ocl_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     tech_ocl_details_view = ViewTable(
         display_name="Tech OCL Details",
