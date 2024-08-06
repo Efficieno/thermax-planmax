@@ -28,7 +28,7 @@ class DetailPlan(View):
         Customers,
         Calender,
         Organizations
-    ).join(PlanMaxLines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
+    ).join(PlanMaxHeaders.planmax_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     rolling_plan_details_view = ViewTable(
         display_name="Line Details",
