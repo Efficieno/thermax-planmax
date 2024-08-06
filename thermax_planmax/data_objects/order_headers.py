@@ -14,7 +14,7 @@ class OrderHeaders(ObjectBase):
     __tablename__ = "oe_order_headers_all"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
-    header_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    header_id: Mapped[str] = mapped_column(NUMBER, primary_key=True, info={"column_metadata": ColumnMetadata()})
     org_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     order_type_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     order_number: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})

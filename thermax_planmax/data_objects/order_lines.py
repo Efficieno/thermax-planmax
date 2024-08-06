@@ -14,7 +14,7 @@ class OrderLines(ObjectBase):
     __tablename__ = "oe_order_lines_all"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
-    line_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    line_id: Mapped[str] = mapped_column(NUMBER, primary_key=True, info={"column_metadata": ColumnMetadata()})
     org_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     header_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     line_type_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})

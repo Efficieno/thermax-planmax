@@ -14,7 +14,7 @@ class TechOCLLines(ObjectBase):
     __tablename__ = "xxtmx_tech_ocl_specs_tbl"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
-    otos_line_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    otos_line_id: Mapped[str] = mapped_column(NUMBER, primary_key=True, info={"column_metadata": ColumnMetadata()})
     otm_header_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     organization_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     otos_der_model_no: Mapped[str] = mapped_column(VARCHAR2, primary_key=False, info={"column_metadata": ColumnMetadata()})

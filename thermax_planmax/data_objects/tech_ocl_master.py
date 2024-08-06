@@ -14,7 +14,7 @@ class TechOCLMaster(ObjectBase):
     __tablename__ = "xxtmx_tech_ocl_mstr_tbl"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
-    otm_header_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    otm_header_id: Mapped[str] = mapped_column(NUMBER, primary_key=True, info={"column_metadata": ColumnMetadata()})
     organization_id: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     otm_tech_ocl_no: Mapped[str] = mapped_column(VARCHAR2, primary_key=False, info={"column_metadata": ColumnMetadata()})
     otm_tech_ocl_date: Mapped[str] = mapped_column(DATE, primary_key=False, info={"column_metadata": ColumnMetadata()})

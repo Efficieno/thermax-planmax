@@ -13,7 +13,7 @@ class Calender(ObjectBase):
     __tablename__ = "xxplanmax_calender"
     __table_args__ = {"schema": "apps", "extend_existing": True}
 
-    day_id: Mapped[str] = mapped_column(DATE, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    day_id: Mapped[str] = mapped_column(DATE, primary_key=True, info={"column_metadata": ColumnMetadata()})
     day_name: Mapped[str] = mapped_column(VARCHAR2, primary_key=False, info={"column_metadata": ColumnMetadata()})
     num_days_in_day: Mapped[str] = mapped_column(NUMBER, primary_key=False, info={"column_metadata": ColumnMetadata()})
     day_end_date: Mapped[str] = mapped_column(DATE, primary_key=False, info={"column_metadata": ColumnMetadata()})
