@@ -33,6 +33,6 @@ Relations.add_relations(
 Relations.add_relations(
     relation_name="rolling_master_tech_ocl",
     source=RollingPlan.rolling_plan_view,
-    destination=TechOCLLines.tech_ocl_details_view,
+    destination=TechOCLDetails.tech_ocl_details_view,
     join_conditions=[(PlanMaxHeaders.otm_header_id, TechOCLLines.otm_header_id)]
     )
