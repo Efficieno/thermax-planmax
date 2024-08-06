@@ -82,7 +82,7 @@ class DIDetailsView(View):
             DIDetails.freight,
             DIDetails.consignment_delivery_instructn,
             DIDetails.shipping_method,
-            DIDetails.mode,
+            # DIDetails.mode,
             DIDetails.road_permit_status,
             DIDetails.payment_details1,
             DIDetails.amt1,
