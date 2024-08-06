@@ -13,6 +13,7 @@ from thermax_planmax.data_objects.planmax_headers import PlanMaxHeaders
 from thermax_planmax.data_objects.planmax_lines import PlanMaxLines
 from thermax_planmax.data_objects.di_details import DIDetails
 from thermax_planmax.data_objects.tech_ocl_lines import TechOCLLines
+from thermax_planmax.data_objects.prn_details import PRNDetails 
 
 
 # Rolling plan Relations 
@@ -45,8 +46,8 @@ Relations.add_relations(
     relation_name="rolling_master_prn",
     source=RollingPlan.all_cols_rolling_plan_view,
     destination=PRNDetailsView.all_cols_prn_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetailsView.so_header_id),
-                     (PlanMaxHeaders.project_number, PRNDetailsView.project_number_so)]
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id),
+                     (PlanMaxHeaders.project_number, PRNDetails.project_number_so)]
     )
 
 
@@ -80,6 +81,6 @@ Relations.add_relations(
     relation_name="rolling_master_prn_detls",
     source=MasterPlanHeaders.all_cols_master_plan_headers_v,
     destination=PRNDetailsView.all_cols_prn_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetailsView.so_header_id),
-                     (PlanMaxHeaders.project_number, PRNDetailsView.project_number_so)]
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id),
+                     (PlanMaxHeaders.project_number, PRNDetails.project_number_so)]
     )
