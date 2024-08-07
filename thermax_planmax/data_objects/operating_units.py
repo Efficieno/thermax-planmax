@@ -16,10 +16,10 @@ class OperatingUnits(ObjectBase):
 
     business_group_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
     organization_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata()})
-    name: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    name: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Operating Unit Name")})
     date_from: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
     date_to: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    short_code: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    short_code: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="OU Code")})
     set_of_books_id: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     default_legal_context_id: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     usable_flag: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
