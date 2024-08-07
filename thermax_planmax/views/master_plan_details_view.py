@@ -79,7 +79,7 @@ class MasterPlanLines(View):
             PlanMaxLines.line_item_type,
             PlanMaxLines.line_item_sub_type,
             PlanMaxLines.project_number
-        ).filter(PlanMaxHeaders.show_on_view == "Yes"),
+        ).filter(PlanMaxLines.show_on_view == "Yes"),
         column_properties={},
         actions=[],
         inline_actions=None,
