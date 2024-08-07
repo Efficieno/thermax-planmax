@@ -51,7 +51,7 @@ class PlanMaxLines(ObjectBase):
     primary_unit_of_measure: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Primary UOM")})
     item_cost: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Item Cost")})
     line_item_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Line Item Type")})
-    line_item_sub_type: Mapped[str] = mapped_column(DUNNO, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Line Item Sub Type")})
+    line_item_sub_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Line Item Sub Type")})
     project_number: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Project Number")})
     show_on_view: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     order_line_item_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
