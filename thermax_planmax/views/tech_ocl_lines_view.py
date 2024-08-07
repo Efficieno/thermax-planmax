@@ -28,7 +28,8 @@ class TechOCLLinesView(View):
         Calender,
         Organizations,
         TechOCLLines,
-    ).outerjoin(PlanMaxHeaders.tech_ocl_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
+        TechOCLMaster
+    ).outerjoin(PlanMaxHeaders.tech_ocl_master).outerjoin(PlanMaxHeaders.tech_ocl_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     all_cols_tech_ocl_lines_v = ViewTable(
         display_name="Tech OCL Details",
@@ -40,6 +41,8 @@ class TechOCLLinesView(View):
             PlanMaxHeaders.sales_order_number,
             PlanMaxHeaders.model_line_number,
             Customers.party_name,
+            TechOCLMaster.otm_tech_ocl_amd_no,
+            TechOCLMaster.otm_tech_ocl_amd_date,
             TechOCLLines.otos_line_id,
             TechOCLLines.otm_header_id,
             TechOCLLines.organization_id,
