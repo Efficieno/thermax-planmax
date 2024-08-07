@@ -1,4 +1,4 @@
-from sqlalchemy.dialects.oracle.types import VARCHAR2, NUMBER, FLOAT, LONG, DATE, TIMESTAMP, VARCHAR
+from sqlalchemy import Integer, String, Float, Date, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
 from efficieno.ontology.base import ColumnMetadata, ObjectBase
