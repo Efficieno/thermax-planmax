@@ -169,7 +169,7 @@ class MasterPlanHeaders(View):
             PlanMaxHeaders.sos_en1_revision,
             PlanMaxHeaders.sos_mfg_revision,
             PlanMaxHeaders.sos_revision_date
-        ).filter(PlanMaxHeaders.order_status == "OPEN"),
+        ),
         column_properties={},
         actions=[],
         inline_actions=None,
