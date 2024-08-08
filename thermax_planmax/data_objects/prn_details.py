@@ -44,9 +44,12 @@ class PRNDetails(ObjectBase):
     remarks: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     reporting_employee: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
+    # planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="prn_details",
+    #                                                          primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id,"
+    #                                                                      "foreign(PlanMaxHeaders.project_number)==PRNDetails.project_number_so)")
+
     planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="prn_details",
-                                                             primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id,"
-                                                                         "foreign(PlanMaxHeaders.project_number)==PRNDetails.project_number_so)")
+                                                             primaryjoin="foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id")
 
 
 

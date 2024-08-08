@@ -167,9 +167,13 @@ class PlanMaxHeaders(ObjectBase):
     customers: Mapped["Customers"] = relationship(back_populates="planmax_headers",
                                                   primaryjoin="foreign(PlanMaxHeaders.ship_site_use_id)==Customers.site_use_id")
 
+    # di_details: Mapped["DIDetails"] = relationship(back_populates="planmax_headers",
+    #                                                primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no,"
+    #                                                            "foreign(PlanMaxHeaders.project_number)==DIDetails.xx_project_number)")
+
     di_details: Mapped["DIDetails"] = relationship(back_populates="planmax_headers",
-                                                   primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no,"
-                                                               "foreign(PlanMaxHeaders.project_number)==DIDetails.xx_project_number)")
+                                                   primaryjoin="foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no")
+
 
     # invoice_headers: Mapped["InvoiceHeaders"] = relationship(back_populates="planmax_headers", primaryjoin="")
 
@@ -195,9 +199,12 @@ class PlanMaxHeaders(ObjectBase):
                                                          primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_header_id)==PlanMaxLines.sales_order_header_id,"
                                                                      "foreign(PlanMaxHeaders.model_line_id)==PlanMaxLines.reference_line_id)")
 
+    # prn_details: Mapped["PRNDetails"] = relationship(back_populates="planmax_headers",
+    #                                                  primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id,"
+    #                                                              "foreign(PlanMaxHeaders.project_number)==PRNDetails.project_number_so)")
+
     prn_details: Mapped["PRNDetails"] = relationship(back_populates="planmax_headers",
-                                                     primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id,"
-                                                                 "foreign(PlanMaxHeaders.project_number)==PRNDetails.project_number_so)")
+                                                     primaryjoin="foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id")
 
     # project_po_details: Mapped["ProjectPODetails"] = relationship(back_populates="planmax_headers", primaryjoin="")
 

@@ -117,9 +117,12 @@ class DIDetails(ObjectBase):
     sgst: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     sgst_percentage: Mapped[str] = mapped_column(Float, primary_key=False, info={"column_metadata": ColumnMetadata()})
 
+    # planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="di_details",
+    #                                                          primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no,"
+    #                                                                      "foreign(PlanMaxHeaders.project_number)==DIDetails.xx_project_number)")
+
     planmax_headers: Mapped["PlanMaxHeaders"] = relationship(back_populates="di_details",
-                                                             primaryjoin="and_(foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no,"
-                                                                         "foreign(PlanMaxHeaders.project_number)==DIDetails.xx_project_number)")
+                                                             primaryjoin="foreign(PlanMaxHeaders.sales_order_number)==DIDetails.sales_order_no")
 
 
 """
