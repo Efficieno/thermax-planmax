@@ -1,5 +1,7 @@
 from sqlalchemy import Select, func, Update, and_
 
+from efficieno.executor.executor_factory import get_backend_executor
+
 from efficieno.components.view_actions import Action
 from efficieno.components.view_metrics import Metric
 from efficieno.components.view_tables import ViewTable
@@ -144,7 +146,6 @@ class RollingPlan(View):
         base_object=ho_orders_view,
     )
 
-    @staticmethod
     def fn_update_order_intake_fields(
             sales_order_header_id: int,
             model_line_id: str,
@@ -171,8 +172,9 @@ class RollingPlan(View):
                       .where(and_(PlanMaxHeaders.sales_order_header_id == sales_order_header_id, PlanMaxHeaders.model_line_id == model_line_id))
                       .values(**args))
         print(f"Update statement        - {update_sql}")
+        result = self.execute_update_statement(update_sql)
         print("************************************************")
-        return {"status": "success", "message": "Action Executed Successfully"}, 200
+        return {"status": "success", "message": f"Action Executed Successfully, {result['updated_rows']} rows updated"}, 200
 
     update_order_intake_fields = Action(
         display_name="Update Order InTake", action_type="update", action_function=fn_update_order_intake_fields
