@@ -147,6 +147,7 @@ class RollingPlan(View):
     )
 
     def fn_update_order_intake_fields(
+            self,
             sales_order_header_id: int,
             model_line_id: str,
             mfg_organization_id: str = None,
