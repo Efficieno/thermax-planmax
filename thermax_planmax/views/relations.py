@@ -31,8 +31,7 @@ Relations.add_relations(
     relation_name="rolling_master_di",
     source=RollingPlan.all_cols_rolling_plan_view,
     destination=DIDetailsView.all_cols_di_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_number, DIDetails.sales_order_no),
-                     (PlanMaxHeaders.project_number, DIDetails.xx_project_number)]
+    join_conditions=[(PlanMaxHeaders.sales_order_number, DIDetails.sales_order_no)]
     )
 
 Relations.add_relations(
@@ -46,8 +45,7 @@ Relations.add_relations(
     relation_name="rolling_master_prn",
     source=RollingPlan.all_cols_rolling_plan_view,
     destination=PRNDetailsView.all_cols_prn_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id),
-                     (PlanMaxHeaders.project_number, PRNDetails.project_number_so)]
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id)]
     )
 
 
@@ -66,8 +64,7 @@ Relations.add_relations(
     relation_name="rolling_master_di",
     source=MasterPlanHeaders.all_cols_master_plan_headers_v,
     destination=DIDetailsView.all_cols_di_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_number, DIDetails.sales_order_no),
-                     (PlanMaxHeaders.project_number, DIDetails.xx_project_number)]
+    join_conditions=[(PlanMaxHeaders.sales_order_number, DIDetails.sales_order_no)]
     )
 
 Relations.add_relations(
@@ -81,6 +78,5 @@ Relations.add_relations(
     relation_name="rolling_master_prn_detls",
     source=MasterPlanHeaders.all_cols_master_plan_headers_v,
     destination=PRNDetailsView.all_cols_prn_details_v,
-    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id),
-                     (PlanMaxHeaders.project_number, PRNDetails.project_number_so)]
+    join_conditions=[(PlanMaxHeaders.sales_order_header_id, PRNDetails.so_header_id)]
     )
