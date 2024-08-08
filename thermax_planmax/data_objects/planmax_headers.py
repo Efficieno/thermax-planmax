@@ -204,7 +204,7 @@ class PlanMaxHeaders(ObjectBase):
     #                                                              "foreign(PlanMaxHeaders.project_number)==PRNDetails.project_number_so)")
 
     prn_details: Mapped["PRNDetails"] = relationship(back_populates="planmax_headers",
-                                                     primaryjoin="foreign(PlanMaxHeaders.sales_order_header_id)==PRNDetails.so_header_id")
+                                                     primaryjoin="foreign(PlanMaxHeaders.sales_order_number)==PRNDetails.sales_order_number")
 
     # project_po_details: Mapped["ProjectPODetails"] = relationship(back_populates="planmax_headers", primaryjoin="")
 
