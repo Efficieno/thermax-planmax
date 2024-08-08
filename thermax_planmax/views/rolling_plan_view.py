@@ -165,7 +165,7 @@ class RollingPlan(View):
         if mfg_organization_id is not None:
             args["mfg_organization_id"] = mfg_organization_id
         elif std_nstd is not None:
-            args["std_nstd"] = std_nstd
+            args["std_nstd"] = std_nstd['new']
         elif sos_item is not None:
             args["sos_item"] = sos_item
 
