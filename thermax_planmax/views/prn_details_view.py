@@ -31,9 +31,9 @@ class PRNDetailsView(View):
     ).outerjoin(PlanMaxHeaders.prn_details).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     all_cols_prn_details_v = ViewTable(
-        display_name="PRN Details",
-        table_header="PRN Details",
-        table_description="PRN Details",
+        display_name="PRN Details (All Cols)",
+        table_header="PRN Details (All Cols)",
+        table_description="PRN Details (All Cols)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

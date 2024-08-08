@@ -31,8 +31,8 @@ class RollingPlan(View):
 
     all_cols_rolling_plan_view = ViewTable(
         display_name="Rolling Plan",
-        table_header="Rolling Plan (All Cols)",
-        table_description="Rolling plan details (All Cols)",
+        table_header="Rolling Plan",
+        table_description="Rolling plan details",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

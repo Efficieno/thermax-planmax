@@ -32,9 +32,9 @@ class TechOCLLinesView(View):
     ).outerjoin(PlanMaxHeaders.tech_ocl_master).outerjoin(PlanMaxHeaders.tech_ocl_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     all_cols_tech_ocl_lines_v = ViewTable(
-        display_name="Tech OCL Details",
-        table_header="Tech OCL Details",
-        table_description="Tech OCL Details",
+        display_name="Tech OCL Details (All Cols)",
+        table_header="Tech OCL Details (All Cols)",
+        table_description="Tech OCL Details (All Cols)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

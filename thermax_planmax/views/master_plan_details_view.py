@@ -31,9 +31,9 @@ class MasterPlanLines(View):
     ).join(PlanMaxHeaders.planmax_lines).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     all_cols_master_plan_lines_v = ViewTable(
-        display_name="Line Details",
-        table_header="Line Details",
-        table_description="Line Details",
+        display_name="Line Details (All Cols)",
+        table_header="Line Details (All Cols)",
+        table_description="Line Details (All Cols)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,

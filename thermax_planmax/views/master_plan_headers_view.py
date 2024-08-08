@@ -29,9 +29,9 @@ class MasterPlanHeaders(View):
     ).outerjoin(PlanMaxHeaders.customers).outerjoin(PlanMaxHeaders.calender).outerjoin(PlanMaxHeaders.organizations)
 
     all_cols_master_plan_headers_v = ViewTable(
-        display_name="Master Plan",
-        table_header="Master Plan (All Columns)",
-        table_description="Master Plan (All Columns)",
+        display_name="Master Plan (All Cols)",
+        table_header="Master Plan (All Cols)",
+        table_description="Master Plan (All Cols)",
         query=query.with_only_columns(
             PlanMaxHeaders.curr_thx_commitment_date,
             PlanMaxHeaders.project_number,
