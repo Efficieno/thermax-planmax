@@ -181,6 +181,24 @@ class RollingPlan(View):
         display_name="Update Order InTake", action_type="update", action_function=fn_update_order_intake_fields
     )
 
+
+    def fn_refresh_order_headers(
+            self,
+            sales_order_header_id: int,
+    ):
+        print("************** Executing Action ****************")
+        print(f"Order Header ID          - {sales_order_header_id}")
+
+        args = {}
+        result = self.execute_procedure(procedure_name="xxplanmax_scct_pkg.update_header", arguments=[sales_order_header_id])
+        print("************************************************")
+        return {"status": "success", "message": f"Action Executed Successfully, rows updated"}, 200
+
+    refresh_order_headers = Action(
+        display_name="Refresh Order Headers", action_type="generic", action_function=fn_refresh_order_headers
+    )
+
+
     new_orders_view = ViewTable(
         display_name="New Orders",
         table_header="New Orders",
@@ -202,7 +220,7 @@ class RollingPlan(View):
             PlanMaxHeaders.sos_item,
         ).filter(PlanMaxHeaders.order_intake_status == "N"),
         column_properties={},
-        actions=[],
+        actions=[refresh_order_headers],
         inline_actions=update_order_intake_fields,
     )
 
