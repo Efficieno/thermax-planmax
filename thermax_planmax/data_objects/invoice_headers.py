@@ -18,9 +18,9 @@ class InvoiceHeaders(ObjectBase):
     trx_type_desc: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     invoice_type: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata()})
     gl_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    customer_trx_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata()})
+    customer_trx_id: Mapped[str] = mapped_column(Integer, primary_key=True, info={"column_metadata": ColumnMetadata(invisible=True)})
     invoice_amt: Mapped[str] = mapped_column(Float, primary_key=False, info={"column_metadata": ColumnMetadata()})
-    bill_to_site_use_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata()})
+    bill_to_site_use_id: Mapped[str] = mapped_column(Integer, primary_key=False, info={"column_metadata": ColumnMetadata(invisible=True)})
 
 """
 trx_number
