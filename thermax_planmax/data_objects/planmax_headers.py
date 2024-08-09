@@ -149,7 +149,7 @@ class PlanMaxHeaders(ObjectBase):
     plan_eol_mech_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Planned EOL Mech Date")})
     plan_eol_ei_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Planned EOL EI Date")})
     folder_status: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Folder Status")})
-    regional_commercial: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Regional Commercial")})
+    regional_commercial: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Regional Commercial Person")})
     actual_fg_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Actual FG Date")})
     shop_subcontract: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Shop SubContract")})
     oc_required: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="OC Required")})
