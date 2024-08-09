@@ -106,7 +106,7 @@ class PlanMaxHeaders(ObjectBase):
     hdr_booked_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Header Booked Date")})
     otm_tech_ocl_no: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Technical OCL Number")})
     fuel: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Fuel")})
-    pressure: Mapped[str] = mapped_column(Float, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Pressure")})
+    pressure: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Pressure")})
     special_instructions: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Special Instructions")})
     product_model: Mapped[str] = mapped_column(String, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Product Model")})
     ordered_date: Mapped[str] = mapped_column(Date, primary_key=False, info={"column_metadata": ColumnMetadata(display_name="Ordered Date")})
